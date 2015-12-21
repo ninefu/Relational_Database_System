@@ -1,0 +1,3 @@
+absolute input dir
+absolute output dir
+absolute temp dir
