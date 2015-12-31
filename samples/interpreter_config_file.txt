@@ -1,0 +1,3 @@
+set input dir here
+set output dir here
+set temp sort dir here
