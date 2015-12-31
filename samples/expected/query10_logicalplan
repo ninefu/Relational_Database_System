@@ -1,8 +1,0 @@
-Join[null]
-[[Sailors.A, Reserves.G], equals null, min null, max null]
-[[Reserves.H, Boats.D], equals null, min null, max null]
-[[Sailors.B], equals null, min null, max 149]
--Select[Sailors.B <= 149]
---Leaf[Sailors]
--Leaf[Reserves]
--Leaf[Boats]
