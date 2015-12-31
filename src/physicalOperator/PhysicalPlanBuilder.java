@@ -74,16 +74,6 @@ public class PhysicalPlanBuilder implements LogicalPlanVisitor {
 		sortOp = new ExternalSortOperator(config.getSortBufferPages(),config.isHumanReadable(),config.getTempDir()+"\\"+sortNum,arg0.order(),operators.pop());
 		sortNum++;
 		
-//		switch(config.getSortMethod()) {
-//		case EXTERNAL:
-//			new File(config.getTempDir()+"\\"+sortNum).mkdir();
-//			sortOp = new ExternalSortOperator(config.getSortBufferPages(),config.isHumanReadable(),config.getTempDir()+"\\"+sortNum,arg0.order(),operators.pop());
-//			sortNum++;
-//			break;
-//		case MEMORY:
-//			sortOp = new InMemorySortOperator(arg0.order(), operators.pop());
-//			break;
-//		}
 		operators.push(sortOp);
 	}
 	
@@ -169,38 +159,6 @@ public class PhysicalPlanBuilder implements LogicalPlanVisitor {
 				}
 			}
 		}
-		
-		// Calculate scan cose
-	
-		//if the third line in plan_builder_config.txt is 1, i.e., we need to use indexes if possible
-		//make sure the selection operator has a leaf/scan as its child
-//		if (config.isIndexed() && child instanceof ScanOperator && inConfig != null){
-//			Table baseTable = ((ScanOperator)child).getBaseTable();
-//			String alias = ((ScanOperator)child).getAlias();
-//			String tableName = baseTable.getName();
-//			double[] bounds;
-//			BTreeIndex candidate = inConfig.getIndex(tableName);
-//			//check if there is an index on this table;
-//			if (candidate != null){
-//				String indexedColumn = candidate.indexedOn();
-//				IndexScanExpressionVisitor inVis = new IndexScanExpressionVisitor(indexedColumn);
-//				arg0.condition().accept(inVis);
-//				bounds = inVis.getHighAndLow();
-//				// check if we can use the index on this select condition
-//				if (bounds[0] != Double.MAX_VALUE || bounds[1] != -Double.MAX_VALUE){
-//					operators.push(new IndexScanOperator(baseTable,alias,(int)bounds[0],(int)bounds[1],inConfig));
-//				}else{
-//					operators.push(new SelectOperator(child, arg0.condition()));
-//				}
-//				if (inVis.getRemainderCondition() != null){
-//					operators.push(new SelectOperator(operators.pop(),inVis.getRemainderCondition()));
-//				}
-//			}else{
-//				operators.push(new SelectOperator(child, arg0.condition()));
-//			}
-//		} else {	
-//			operators.push(new SelectOperator(child, arg0.condition()));
-//		}
 		
 	}
 

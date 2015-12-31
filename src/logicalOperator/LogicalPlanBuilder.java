@@ -124,43 +124,6 @@ public class LogicalPlanBuilder { // Mostly cannibalized from QueryPlan
 			}
 		}
 		finalOperator = new LogicalJoin(tableNameList, tableRefList, ufv, jev, database);
-
-		
-//		JoinExpressionVisitor jev = new JoinExpressionVisitor();
-//		if (where != null) {
-//			where.accept(jev);
-//		}
-//		tableRefList.add(tableRef);
-//		tableNameList.add(tableName);
-//		Expression firstSelect = jev.getSelectionCondition(tableRef);
-//		if(firstSelect != null) {
-//			finalOperator = new LogicalSelect(firstSelect, finalOperator);
-//		}
-//		if(joins != null) {
-//			for(Join j : joins) {
-//				tableName = getNameFromItem(j.getRightItem());
-//				tableAlias = j.getRightItem().getAlias();
-//				tableRef = tableAlias == null? tableName : tableAlias;
-//				Table rightTable = database.getTable(tableName);
-//				LogicalOperator rightChild = new LogicalScan(rightTable, tableAlias);
-//				Expression select = jev.getSelectionCondition(tableRef);
-//				if(select != null) {
-//					rightChild = new LogicalSelect(select, rightChild);
-//				}
-//				Expression joinCond = jev.getMultiJoinCondition(tableRef, tableRefList);
-//				JoinExpressionVisitor equalityVisitor = new JoinExpressionVisitor();
-//				if(joinCond != null) {
-//					joinCond.accept(equalityVisitor);
-//					String[] rightSorts = equalityVisitor.getSortOrderForTable(tableRef);
-//					String[] leftSorts = equalityVisitor.getSortOrderForTable(tableRefList);
-//					finalOperator = new LogicalJoin(joinCond, finalOperator, rightChild, leftSorts, rightSorts);
-//				} else {
-//					finalOperator = new LogicalJoin(joinCond, finalOperator, rightChild);
-//				}
-//				tableRefList.add(tableRef);
-//				tableNameList.add(tableName);
-//			}
-//		}
 		
 		String[] projects = getSelectTarget(plainSel.getSelectItems());
 		

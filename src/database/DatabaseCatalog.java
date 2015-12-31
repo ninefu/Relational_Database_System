@@ -49,8 +49,6 @@ public class DatabaseCatalog {
 	private String outputDirectory;
 	private String queryDirectory;
 	private String tempDirectory;
-//	private Boolean buildIndex;
-//	private Boolean evaluateQuery;
 	private IndexConfig indexes;
 	private HashMap<String, Integer> numTuples;
 	private HashMap<String, Integer> lower;
@@ -315,10 +313,6 @@ public class DatabaseCatalog {
 			count += 1;
 			int[] values = cur.getValues();
 			for (int i = 0; i < values.length; i++){
-//				System.out.println("Res length: " + res.length);
-//				System.out.println("Values length " + values.length);
-//				System.out.println("Current position in values" + i);
-//				System.out.println("Current position in res " + (2 * i + 1));
 				if (values[i] < res[2 * i + 1]){
 					res[2 * i + 1] = values[i];
 				}
@@ -454,13 +448,9 @@ public class DatabaseCatalog {
 						physicalPlan.reset();
 						
 						TupleWriter writer = new BinaryTupleWriter(db.getOutputFile(queryCount), columns);
-						//TupleWriter hwriter = new ReadableTupleWriter(new File(String.format("%s_humanreadable", db.getOutputFile(queryCount).getPath())));
 						double secs = (double)physicalPlan.dump(writer)/1000000000.0;
-						//physicalPlan.reset();
-						//physicalPlan.dump(hwriter);
 						writer.close();
 						System.out.println(String.format("query%d completed in %f seconds", queryCount, secs));
-						//hwriter.close();
 					} catch (Exception e){
 						System.err.println(String.format("Exception occured on query%d: %s ", queryCount, statement));
 						e.printStackTrace();
